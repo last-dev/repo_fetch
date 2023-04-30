@@ -1,10 +1,15 @@
 # Automate Repo Updates
 
-## Goal
+## **Goal**
 
-- The goal of this script is to automate going to each github repo I work with and pulling down any recent updates. 
-- Challenging myself to write this in Bash
+The goal of this script is to automate having to fetch any of the latest updates from my remote repositories and pull them down to their respective local repository. This can be time consuming based on my workflow.
 
-## Installation:
+This will force me to stay ontop deleting unused branches. Lol.
 
-- `sudo ln -s /home/jojo/code/projects/repo_fetch/fetch.sh /usr/local/bin/fetch.sh`
+## **Setup**
+
+I can keep my script up-to-date by creating a symbolic link to my `/usr/local/bin` directory:
+
+```bash
+sudo ln -s /home/$USER/code/projects/repo_fetch/fetch.sh /usr/local/bin/fetch.sh
+```
