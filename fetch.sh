@@ -4,13 +4,12 @@
 main_repo_dir="/home/$USER/code"
 dir_absolute_paths=()
 
-# If on Mac, change main_repo_dir
+# If on Mac, change `main_repo_dir` to `/Users/$USER/code`
 if [ $(uname) == "Darwin" ]; then
   main_repo_dir="/Users/$USER/code"
 fi 
 
 # Runs git commands on each branch of the repo
-# I need to keep up with deleting unused branches
 function git_cmds {
     # Add all branches in the repo to an array
     branches=()
@@ -54,7 +53,7 @@ sleep 0.5
 
 # Iterate through each directory except 'not-git-repo' and return an array of their absolute paths
 # for dir in $(ls --ignore 'not-git-repos'); do
-# Can't use the above command subsitution because the `--ignore` option for `ls` is not on Macs 
+# Can't use the above command subsitution because the `--ignore` option for `ls` is not on Macs by default
 for dir in $(find . -maxdepth 1 -type d -not -name "not-git-repos" -not -name "projects" -not -name "." -not -name ".*"); do
   dir_absolute_paths+=("$(realpath $dir)")
 done
