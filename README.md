@@ -11,5 +11,5 @@ This will force me to stay ontop deleting unused branches. Lol.
 I can keep my script up-to-date by creating a symbolic link to my `/usr/local/bin` directory:
 
 ```bash
-sudo ln -s /home/$USER/code/projects/repo_fetch/fetch.sh /usr/local/bin/fetch.sh
+sudo ln -s $HOME/code/projects/repo_fetch/fetch.sh /usr/local/bin/fetch.sh
 ```
