@@ -51,17 +51,21 @@ echo -e "> \033[95mGathering child directories...\033[0m"
 echo
 sleep 0.5
 
-# Iterate through each directory except 'not-git-repo' and return an array of their absolute paths
-# for dir in $(ls --ignore 'not-git-repos'); do
-# Can't use the above command subsitution because the `--ignore` option for `ls` is not on Macs by default
-for dir in $(find . -maxdepth 1 -type d -not -name "not-git-repos" -not -name "projects" -not -name "." -not -name ".*"); do
-  dir_absolute_paths+=("$(realpath $dir)")
+# Iterate through each directory that is a git repo and return an array of their absolute paths
+for dir in $(ls); do
+  cd $main_repo_dir/$dir
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    dir_absolute_paths+=("$(pwd)")
+  fi
 done
 
-# Move into dedicated project directory and add them to the array
+# Move into dedicated project directory and add it's git repos to the array
 cd "$main_repo_dir/projects"
-for dir in $(find . -maxdepth 1 -type d -not -name "." -not -name ".*"); do
-  dir_absolute_paths+=("$(realpath $dir)")
+for dir in $(ls); do
+  cd $main_repo_dir/projects/$dir
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    dir_absolute_paths+=("$(pwd)")
+  fi
 done
 
 # Navigate to each path in the array and run commands
