@@ -25,12 +25,12 @@ git_cmds() {
 
 		exit_status=$?
 		if [ ${exit_status} -eq 128 ]; then
-        	echo "\n\t${red}Cannot pull with rebase: You have unstaged changes.${reset}\n"
+        	echo -e "\n\t${red}Cannot pull with rebase: You have unstaged changes.${reset}\n"
 		fi	
     done
 }
 
-echo "${green}
+echo -e "${green}
 ================================================================
 ________                          __________    _____      ______  
 ___  __ \__________________       ___  ____/______  /_________  /_ 
@@ -41,10 +41,10 @@ _  _, _//  __/_  /_/ / /_/ //_____/  __/   /  __/ /_ / /__ _  / / /
 ================================================================
 ${reset}"
 
-echo "> ${magenta}Moving to repo directory:${yellow} ${main_repo_dir}${reset}"
+echo -e "> ${magenta}Moving to repo directory:${yellow} ${main_repo_dir}${reset}"
 cd "${main_repo_dir}"
 
-echo "\n> ${magenta}Gathering child directories...${reset}\n"
+echo -e "\n> ${magenta}Gathering child directories...${reset}\n"
 for dir in $(ls); do
 	cd ${main_repo_dir}/${dir}
 	if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
@@ -61,7 +61,7 @@ for dir in $(ls); do
 done
 
 for path in ${dir_absolute_paths[@]}; do
-	echo "> ${magenta}Moving to: ${yellow}${path}${reset}"
+	echo -e "> ${magenta}Moving to: ${yellow}${path}${reset}"
 	cd ${path}
 	git_cmds
 	echo
